@@ -71,7 +71,7 @@ void Nodo::Leer(int x)
 {
     this->dato=x;
 }
-void Nodo::Imprimir()
+void Nodo :: Imprimir()
 {
     cout<<this->dato<<endl;
 }
@@ -85,14 +85,47 @@ Nodo* Nodo::Obtieneant()
     return(this->ant);
 }
 
-
 int Nodo::Obtienedato()
 {
     return(this->dato);
 }
 
-
-
+void LDE :: BorrarI(){
+    if(!Inicio)
+        cout<<"lista Vacia"<<endl;
+    else{
+        if (Inicio==Fin){
+            delete Inicio;
+            Fin = NULL;
+            Inicio = NULL;
+        }
+        else {
+            Nodo *hay=Inicio;
+            Inicio=Inicio->Obtienesig();
+            hay->Asignasig(NULL);
+            Inicio->Asignaant(NULL);
+            delete hay;
+        }
+    }
+}
+ void LDE :: BorrarF() {
+     if(!Inicio)
+        cout<<"lista Vacia"<<endl;
+     else{
+        if (Inicio==Fin){
+            delete Inicio;
+            Fin = NULL;
+            Inicio = NULL;
+        }
+         else{
+             Nodo *Sh;
+             Sh=Fin->Obtieneant();
+             Sh->Asignasig(NULL);
+             Fin->Asignaant(NULL);
+             delete Fin;
+             Fin=Sh;
+          }
+ }
 
 
 int main(int argc, const char * argv[])
